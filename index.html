@@ -3,33 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人履歷 | 資深數據工程師</title>
+    <title>個人履歷 | 資深數據工程師 LIN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* === 核心變數與重置 === */
         :root {
-            --bg-color: #1a1a1a; /* 極深灰背景 */
-            --container-bg: #2d2d2d; /* 區塊背景 */
-            --primary-text: #e0e0e0; /* 主文字顏色 */
-            --secondary-text: #a0a0a0; /* 次文字顏色 */
-            --accent-color: #00bcd4; /* 明亮的青色（強調色） */
-            --border-color: #444; /* 分隔線顏色 */
-            --tag-bg: #3d3d3d;
+            --bg-color: #1a1a1a;
+            --container-bg: #2d2d2d;
+            --primary-text: #e0e0e0;
+            --secondary-text: #a0a0a0;
+            --accent-color: #00bcd4;
+            --border-color: #444;
             --shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
 
-        * { box-sizing: border-box; }
-
         body {
-            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.7;
-            color: var(--primary-text);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
+            color: var(--primary-text);
             margin: 0;
             padding: 20px;
         }
 
-        /* === 主容器 === */
         .container {
             max-width: 960px;
             margin: 40px auto;
@@ -40,184 +34,69 @@
             border: 1px solid var(--border-color);
         }
 
-        /* === 頁首 (Header) === */
         header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding-bottom: 30px;
             margin-bottom: 40px;
             border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap-reverse;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 3em;
-            font-weight: 800;
-            letter-spacing: -1px;
-            color: #fff;
+        .header-text { flex: 1; min-width: 300px; }
+
+        .avatar-container {
+            margin-left: 40px;
+            text-align: center;
         }
 
-        .subtitle {
-            font-size: 1.4em;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-top: 10px;
+        .avatar-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 12px; /* 梗圖用方圓角比較有味道 */
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .contact-info {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
+        .avatar-img:hover {
+            transform: rotate(360deg) scale(1.2);
         }
 
-        .contact-info a {
-            text-decoration: none;
-            color: var(--secondary-text);
-            font-size: 0.95em;
-            transition: color 0.3s ease;
-        }
+        h1 { margin: 0; font-size: 4em; color: #fff; letter-spacing: -2px; }
+        .subtitle { font-size: 1.4em; color: var(--accent-color); font-weight: 600; }
+        
+        .contact-info { margin-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; }
+        .contact-info a { text-decoration: none; color: var(--secondary-text); font-size: 0.9em; }
+        .contact-info a:hover { color: var(--accent-color); }
 
-        .contact-info a:hover {
-            color: var(--accent-color);
-        }
-
-        .contact-info i { margin-right: 8px; }
-
-        /* === 通用區塊樣式 === */
         section { margin-bottom: 45px; }
-
-        h2 {
-            font-size: 1.6em;
-            color: #fff;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border-color);
-        }
-
+        h2 { font-size: 1.6em; color: #fff; display: flex; align-items: center; gap: 12px; }
+        h2::after { content: ''; flex: 1; height: 1px; background: var(--border-color); }
         h2 i { color: var(--accent-color); }
 
-        /* === 核心技術 (技能進度條) === */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px 40px;
-        }
+        /* 技能進度條 */
+        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; }
+        .skill-bar-bg { background: #444; height: 8px; border-radius: 4px; margin-top: 8px; }
+        .skill-progress { background: var(--accent-color); height: 100%; width: 0; transition: width 1.5s ease; box-shadow: 0 0 10px var(--accent-color); }
 
-        .skill-item { margin-bottom: 15px; }
+        /* 時間軸 */
+        .timeline-item { position: relative; padding-left: 30px; margin-bottom: 30px; border-left: 2px solid var(--border-color); }
+        .timeline-item::before { content: ''; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; background: var(--bg-color); border: 2px solid var(--accent-color); border-radius: 50%; }
+        .item-header { display: flex; justify-content: space-between; }
+        .item-title { font-size: 1.2em; color: #fff; margin: 0; }
+        .item-date { color: var(--accent-color); font-weight: bold; }
 
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--primary-text);
-        }
-
-        .skill-bar-bg {
-            background: #444;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            background: var(--accent-color);
-            height: 100%;
-            border-radius: 4px;
-            width: 0; /* 初始寬度為 0，用於動畫 */
-            transition: width 1.5s ease-in-out;
-            box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
-        }
-
-        /* === 經歷與學歷條目 === */
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 30px;
-            border-left: 2px solid var(--border-color);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -7px;
-            top: 5px;
-            width: 12px;
-            height: 12px;
-            background: var(--bg-color);
-            border: 2px solid var(--accent-color);
-            border-radius: 50%;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .item-title {
-            margin: 0;
-            font-size: 1.2em;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .item-date {
-            color: var(--accent-color);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-
-        .item-subtitle {
-            color: var(--secondary-text);
-            font-style: italic;
-            margin-top: -5px;
-            margin-bottom: 10px;
-            font-size: 0.95em;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin: 0;
-            color: var(--secondary-text);
-        }
-
-        ul li { margin-bottom: 8px; }
-
-        /* === 幼稚園特別樣式 === */
-        .humor-note {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 10px;
-            font-style: italic;
-        }
-
-        /* === 響應式設計 === */
         @media (max-width: 768px) {
-            .container { padding: 30px; margin: 20px; }
-            h1 { font-size: 2.2em; }
-            .item-header { flex-direction: column; align-items: flex-start; }
-            .item-date { margin-top: 5px; }
+            header { text-align: center; justify-content: center; }
+            .avatar-container { margin-left: 0; margin-bottom: 20px; }
+            .skills-container { grid-template-columns: 1fr; }
         }
     </style>
     <script>
-        window.onload = function() {
-            const skills = document.querySelectorAll('.skill-progress');
-            skills.forEach(skill => {
-                skill.style.width = skill.getAttribute('data-progress');
-            });
+        window.onload = () => {
+            document.querySelectorAll('.skill-progress').forEach(el => el.style.width = el.dataset.progress);
         }
     </script>
 </head>
@@ -225,120 +104,61 @@
 
 <div class="container">
     <header>
-        <h1>[您的姓名]</h1>
-        <div class="subtitle">資深數據工程師 / 資料工程師</div>
-        <div class="contact-info">
-            <a href="mailto:email@example.com"><i class="fas fa-envelope"></i> email@example.com</a>
-            <a href="tel:0912345678"><i class="fas fa-phone"></i> 0912-345-678</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <div class="header-text">
+            <h1>LIN</h1>
+            <div class="subtitle">資深數據工程師 | 資料維護大師</div>
+            <div class="contact-info">
+                <a href="#"><i class="fas fa-envelope"></i> lin.data@example.com</a>
+                <a href="#"><i class="fab fa-github"></i> github.com/LIN-Data</a>
+            </div>
+        </div>
+        <div class="avatar-container">
+            <img src="https://i.kym-cdn.com/entries/icons/original/000/018/012/this_is_fine.png" alt="Meme" class="avatar-img">
+            <div style="font-size: 10px; color: #666; margin-top: 5px;">當 Production 環境出包時的我</div>
         </div>
     </header>
 
-    <section id="summary">
-        <h2><i class="fas fa-user-circle"></i> 專業總結</h2>
-        <p>
-            擁有多年大數據處理與架構設計經驗，專精於 <strong>SQL Server</strong> 資料倉儲建置、<strong>Python</strong> 自動化開發及 <strong>Power BI</strong> 商業智慧分析。擅長優化複雜查詢效能，並能將原始數據轉化為具備商業洞察力的可視化儀表板。
-        </p>
-    </section>
-
     <section id="skills">
-        <h2><i class="fas fa-cogs"></i> 核心技術 (Skills)</h2>
+        <h2><i class="fas fa-terminal"></i> 核心技術</h2>
         <div class="skills-container">
-            <div class="skill-item">
-                <div class="skill-name"><span>SQL Server (T-SQL, ETL)</span><span>95%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="95%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name"><span>Python (Pandas, PySpark)</span><span>90%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="90%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name"><span>Power BI & DAX</span><span>85%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="85%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name"><span>Data Warehousing</span><span>88%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="88%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name"><span>Cloud (Azure/AWS)</span><span>80%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="80%"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name"><span>Git / DevOps</span><span>82%</span></div>
-                <div class="skill-bar-bg"><div class="skill-progress" data-progress="82%"></div></div>
-            </div>
+            <div>SQL Server <div class="skill-bar-bg"><div class="skill-progress" data-progress="95%"></div></div></div>
+            <div>Python (ETL) <div class="skill-bar-bg"><div class="skill-progress" data-progress="90%"></div></div></div>
+            <div>Power BI <div class="skill-bar-bg"><div class="skill-progress" data-progress="85%"></div></div></div>
+            <div>忍耐主管的能力 <div class="skill-bar-bg"><div class="skill-progress" data-progress="100%"></div></div></div>
         </div>
     </section>
 
     <section id="experience">
-        <h2><i class="fas fa-briefcase"></i> 工作經歷</h2>
-        
+        <h2><i class="fas fa-history"></i> 工作經歷</h2>
         <div class="timeline-item">
             <div class="item-header">
-                <h3 class="item-title">資深數據工程師</h3>
-                <span class="item-date">2021/01 – 至今</span>
+                <span class="item-title">資深數據工程師 @ 某大科技公司</span>
+                <span class="item-date">2021 - 至今</span>
             </div>
-            <div class="item-subtitle">XX 科技股份有限公司</div>
             <ul>
-                <li>使用 <strong>SQL Server</strong> 建立企業級資料倉儲，優化查詢效能提升 40%。</li>
-                <li>主導 <strong>Python</strong> ETL 流程開發，處理每日數百萬筆之非結構化數據。</li>
-                <li>設計 <strong>Power BI</strong> 高階主管決策看板，即時監控關鍵績效指標 (KPI)。</li>
-            </ul>
-        </div>
-
-        <div class="timeline-item">
-            <div class="item-header">
-                <h3 class="item-title">資料工程師</h3>
-                <span class="item-date">2018/06 – 2020/12</span>
-            </div>
-            <div class="item-subtitle">OO 數據系統</div>
-            <ul>
-                <li>開發自動化排程工具，減少 60% 的手動資料清理時間。</li>
-                <li>維護生產環境資料庫，確保 99.9% 的高可用性。</li>
+                <li>精通 SQL Server，能寫出讓後輩看不懂（但跑很快）的預存程序。</li>
+                <li>用 Python 寫了一堆自動化腳本，讓自己每天下午都能準時喝咖啡。</li>
             </ul>
         </div>
     </section>
 
     <section id="education">
-        <h2><i class="fas fa-graduation-cap"></i> 學歷背景 (幼稚園 to 大學)</h2>
-        
+        <h2><i class="fas fa-school"></i> 頂尖學歷</h2>
         <div class="timeline-item">
-            <div class="item-header">
-                <h3 class="item-title">國立臺灣大學 (NTU)</h3>
-                <span class="item-date">2014 – 2018</span>
-            </div>
-            <div class="item-subtitle">資訊工程學系 - 學士</div>
+            <div class="item-header"><span class="item-title">國立臺灣大學 (NTU)</span><span class="item-date">大學部</span></div>
         </div>
-
         <div class="timeline-item">
-            <div class="item-header">
-                <h3 class="item-title">臺北市立建國高級中學</h3>
-                <span class="item-date">2011 – 2014</span>
-            </div>
+            <div class="item-header"><span class="item-title">台北市立建國中學</span><span class="item-date">高中</span></div>
         </div>
-
         <div class="timeline-item">
-            <div class="item-header">
-                <h3 class="item-title">臺北市立中正國民中學</h3>
-                <span class="item-date">2008 – 2011</span>
-            </div>
+            <div class="item-header"><span class="item-title">台北市立中正國中</span><span class="item-date">國中</span></div>
         </div>
-
         <div class="timeline-item">
-            <div class="item-header">
-                <h3 class="item-title">臺北市立附設實驗國民小學 (市大附小)</h3>
-                <span class="item-date">2002 – 2008</span>
-            </div>
+            <div class="item-header"><span class="item-title">台北市大附小</span><span class="item-date">國小</span></div>
         </div>
-
         <div class="timeline-item">
-            <div class="item-header">
-                <h3 class="item-title">臺北市立實驗附設幼兒園</h3>
-                <span class="item-date">1999 – 2002</span>
-            </div>
-            <p class="humor-note">* 奠定了對邏輯思考與積木架構的初步興趣。</p>
+            <div class="item-header"><span class="item-title">台北市立實驗附設幼兒園</span><span class="item-date">幼兒園</span></div>
+            <p style="font-size: 0.8em; color: #666;">* 這是我職涯的起點，當時的積木搭建經驗啟發了我的資料架構設計能力。</p>
         </div>
     </section>
 </div>
