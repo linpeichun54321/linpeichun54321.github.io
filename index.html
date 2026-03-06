@@ -1,106 +1,182 @@
+
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>個人履歷 | 資深數據工程師</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人履歷 | 資深數據工程師</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
 
-<style>
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    margin:0;
-    background:#f5f7fa;
-    color:#333;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
 
-.container{
-    width:900px;
-    margin:40px auto;
-    background:white;
-    padding:40px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
 
-header{
-    text-align:center;
-    margin-bottom:30px;
-}
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
 
-h1{
-    margin-bottom:5px;
-    color:#2c3e50;
-}
+        h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 2.5em;
+        }
 
-h2{
-    border-bottom:2px solid #eaeaea;
-    padding-bottom:5px;
-    margin-top:30px;
-}
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
 
-.skill{
-    display:inline-block;
-    background:#3498db;
-    color:white;
-    padding:8px 15px;
-    border-radius:5px;
-    margin:5px;
-}
+        .contact-info {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-ul{
-    line-height:1.8;
-}
-</style>
+        .contact-info span {
+            font-size: 0.9em;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            font-size: 1.4em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+        }
+
+        .experience-item h3 {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+
+        .date {
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container { margin: 10px; padding: 20px; }
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
+    <header>
+        <h1>[您的姓名]</h1>
+        <div class="subtitle">資深數據工程師 / 資料工程師</div>
+        <div class="contact-info">
+            <span><i class="fas fa-envelope"></i> email@example.com</span>
+            <span><i class="fas fa-phone"></i> 0912-345-678</span>
+            <span><i class="fab fa-linkedin"></i> LinkedIn.com/in/yourprofile</span>
+            <span><i class="fab fa-github"></i> github.com/yourusername</span>
+        </div>
+    </header>
 
-<header>
-<h1>林珮君</h1>
-<p><strong>資深數據工程師 / 資料工程師</strong></p>
-</header>
+    <section id="summary">
+        <h2><i class="fas fa-user"></i> 專業總結</h2>
+        <p>
+            擁有多年大數據處理與架構設計經驗，專精於 <strong>SQL Server</strong> 資料倉儲建置、<strong>Python</strong> 自動化開發及 <strong>Power BI</strong> 商業智慧分析。擅長優化複雜查詢效能，並能將原始數據轉化為具備商業洞察力的可視化儀表板。
+        </p>
+    </section>
 
-<section>
-<h2>個人簡介</h2>
-<p>
-具備資料工程與商業智慧分析經驗，專精於資料處理、
-資料倉儲與數據分析平台建置。熟悉 SQL Server、
-Power BI 與 Python 開發，能夠設計完整的資料流程、
-建立數據分析模型並提供商業決策支援。
-</p>
-</section>
+    <section id="skills">
+        <h2><i class="fas fa-tools"></i> 核心技術</h2>
+        <div class="skill-tags">
+            <span class="tag">SQL Server (T-SQL, ETL, SSIS)</span>
+            <span class="tag">Python (Pandas, PySpark, FastAPI)</span>
+            <span class="tag">Power BI (DAX, Power Query)</span>
+            <span class="tag">Data Warehousing</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">Docker / Kubernetes</span>
+            <span class="tag">Cloud (Azure/AWS)</span>
+        </div>
+    </section>
 
-<section>
-<h2>核心技能</h2>
+    <section id="experience">
+        <h2><i class="fas fa-briefcase"></i> 工作經歷</h2>
+        
+        <div class="experience-item">
+            <h3>資深數據工程師 | XX 科技股份有限公司</h3>
+            <div class="date">2021 年 1 月 – 至今</div>
+            <ul>
+                <li>使用 <strong>SQL Server</strong> 建立企業級資料倉儲，並優化查詢效能提升 40%。</li>
+                <li>主導 <strong>Python</strong> ETL 流程開發，處理每日數百萬筆之非結構化數據。</li>
+                <li>設計 <strong>Power BI</strong> 高階主管決策看板，即時監控關鍵績效指標 (KPI)。</li>
+            </ul>
+        </div>
 
-<span class="skill">SQL Server</span>
-<span class="skill">Power BI</span>
-<span class="skill">Python</span>
-<span class="skill">Data Engineering</span>
-<span class="skill">ETL</span>
-<span class="skill">Data Warehouse</span>
+        <div class="experience-item">
+            <h3>資料工程師 | OO 數據系統</h3>
+            <div class="date">2018 年 6 月 – 2020 年 12 月</div>
+            <ul>
+                <li>開發自動化排程工具，減少 60% 的手動資料清理時間。</li>
+                <li>維護生產環境資料庫，確保 99.9% 的高可用性。</li>
+            </ul>
+        </div>
+    </section>
 
-</section>
-
-<section>
-<h2>專業能力</h2>
-<ul>
-<li>資料庫設計與 SQL Server 開發</li>
-<li>Power BI 數據分析與視覺化儀表板</li>
-<li>Python 資料處理與自動化分析</li>
-<li>ETL 資料整合流程設計</li>
-<li>資料倉儲 (Data Warehouse) 建置</li>
-<li>商業智慧 (Business Intelligence) 分析</li>
-</ul>
-</section>
-
-<section>
-<h2>聯絡資訊</h2>
-<p>Email：your_email@example.com</p>
-<p>GitHub：https://github.com/yourgithub</p>
-</section>
-
+    <section id="education">
+        <h2><i class="fas fa-graduation-cap"></i> 學歷背景</h2>
+        <div class="experience-item">
+            <h3>[大學名稱] - [系所名稱] 碩士/學士</h3>
+            <div class="date">2014 年 9 月 – 2018 年 6 月</div>
+        </div>
+    </section>
 </div>
 
 </body>
